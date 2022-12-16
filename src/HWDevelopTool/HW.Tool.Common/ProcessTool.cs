@@ -13,15 +13,6 @@ namespace HW.Tool.Common
         }
 
         /// <summary>
-        /// 是否XT还在运行
-        /// </summary>
-        /// <returns></returns>
-        public static bool IsXTRunning()
-        {
-            return IsRunning("HW.Collaborate.ClientApp");
-        }
-
-        /// <summary>
         /// 程序是否正在运行
         /// </summary>
         public static bool IsRunning(in string processesName)
@@ -32,6 +23,15 @@ namespace HW.Tool.Common
                 return true;
             }
             return false;
+        }
+
+        /// <summary>
+        /// 是否XT还在运行
+        /// </summary>
+        /// <returns> </returns>
+        public static bool IsXTRunning()
+        {
+            return IsRunning("HW.Collaborate.ClientApp");
         }
     }
 }

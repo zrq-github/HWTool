@@ -106,7 +106,6 @@
                     Property="Margin"
                     Value="{adonisUi:Space 2, 1, 1, 1}" />
             </Style>
-
         </ResourceDictionary>
     </Window.Resources>
 
@@ -176,50 +175,48 @@
                                             Style="{DynamicResource {x:Static adonisUi:Styles.ToggleSwitch}}"
                                             IsChecked="{Binding IsDark, RelativeSource={RelativeSource FindAncestor, AncestorType=local:MainWindow}}"
                                             Content="Dark" />
-
                                     </StackPanel>
-
                                 </Grid>
                             </Grid>
 
                             <!--SETTINGS-->
                             <!--<Grid Grid.Row="2">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="{adonisUi:Space 2}"/>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="{adonisUi:Space 2}" />
                                 </Grid.RowDefinitions>
 
                                 <TextBlock Text="SETTINGS"
-                                           Style="{StaticResource NavigationGroupHeaderStyle}"/>
+                                           Style="{StaticResource NavigationGroupHeaderStyle}" />
 
                                 <Grid Grid.Row="1"
                                       Margin="{adonisUi:Space 3, 0, 3, 0}">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="{adonisUi:Space 1}"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="{adonisUi:Space 1}"/>
-                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="{adonisUi:Space 1}" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="{adonisUi:Space 1}" />
+                                        <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
 
                                     -->
                             <!--<CheckBox Grid.Row="0"
                                               Content="Read-only"
                                               IsChecked="{Binding IsReadOnly}"
-                                              Style="{DynamicResource {x:Static adonisUi:Styles.ToggleSwitch}}"/>-->
+                                              Style="{DynamicResource {x:Static adonisUi:Styles.ToggleSwitch}}" />-->
                             <!--
 
                                     <CheckBox Grid.Row="2"
                                               Content="Title bar"
                                               IsChecked="{Binding IsTitleBarVisible}"
-                                              Style="{DynamicResource {x:Static adonisUi:Styles.ToggleSwitch}}"/>
+                                              Style="{DynamicResource {x:Static adonisUi:Styles.ToggleSwitch}}" />
 
                                     -->
                             <!--<CheckBox Grid.Row="4"
                                               Content="Dev mode"
                                               IsChecked="{Binding IsDeveloperMode}"
-                                              Style="{DynamicResource {x:Static adonisUi:Styles.ToggleSwitch}}"/>-->
+                                              Style="{DynamicResource {x:Static adonisUi:Styles.ToggleSwitch}}" />-->
                             <!--
                                 </Grid>
                             </Grid>-->
@@ -236,7 +233,5 @@
                 </StackPanel>
             </Grid>
         </DockPanel>
-
     </Grid>
-
 </adonisControls:AdonisWindow>

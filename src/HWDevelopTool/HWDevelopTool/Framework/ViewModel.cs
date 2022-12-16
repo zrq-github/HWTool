@@ -7,12 +7,20 @@ using System.Runtime.CompilerServices;
 
 namespace HWDevelopTool.Framework;
 
-class ViewModel
+internal class ViewModel
     : INotifyPropertyChanged
     , INotifyDataErrorInfo
     , IDataErrorInfo
 {
     private readonly Dictionary<string, IList<string>> _validationErrors = new Dictionary<string, IList<string>>();
+
+    public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
+
+    public event PropertyChangedEventHandler? PropertyChanged;
+
+    public string Error => string.Join(Environment.NewLine, GetAllErrors());
+
+    public bool HasErrors => _validationErrors.Any();
 
     public string this[string propertyName]
     {
@@ -26,23 +34,6 @@ class ViewModel
 
             return string.Empty;
         }
-    }
-
-    public string Error => string.Join(Environment.NewLine, GetAllErrors());
-
-    public bool HasErrors => _validationErrors.Any();
-
-    public IEnumerable GetErrors(string propertyName)
-    {
-        if (string.IsNullOrEmpty(propertyName))
-            return _validationErrors.SelectMany(kvp => kvp.Value);
-
-        return _validationErrors.TryGetValue(propertyName, out var errors) ? errors : Enumerable.Empty<object>();
-    }
-
-    private IEnumerable<string> GetAllErrors()
-    {
-        return _validationErrors.SelectMany(kvp => kvp.Value).Where(e => !string.IsNullOrEmpty(e));
     }
 
     public void AddValidationError(string propertyName, string errorMessage)
@@ -59,8 +50,13 @@ class ViewModel
             _validationErrors.Remove(propertyName);
     }
 
-    public event PropertyChangedEventHandler? PropertyChanged;
-    public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
+    public IEnumerable GetErrors(string propertyName)
+    {
+        if (string.IsNullOrEmpty(propertyName))
+            return _validationErrors.SelectMany(kvp => kvp.Value);
+
+        return _validationErrors.TryGetValue(propertyName, out var errors) ? errors : Enumerable.Empty<object>();
+    }
 
     protected void RaisePropertyChanged(string propertyName)
     {
@@ -75,5 +71,10 @@ class ViewModel
         storage = value;
         RaisePropertyChanged(propertyName);
         return true;
+    }
+
+    private IEnumerable<string> GetAllErrors()
+    {
+        return _validationErrors.SelectMany(kvp => kvp.Value).Where(e => !string.IsNullOrEmpty(e));
     }
 }

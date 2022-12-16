@@ -8,7 +8,7 @@ using System.Windows.Data;
 namespace HWDevelopTool.Converters;
 
 [ValueConversion(typeof(bool), typeof(bool))]
-class BoolToInverseBoolConverter
+internal class BoolToInverseBoolConverter
     : IValueConverter
 {
     public static readonly BoolToInverseBoolConverter Instance = new();
