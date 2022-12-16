@@ -6,11 +6,11 @@ namespace HWDevelopTool
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : AdonisUI.Controls.AdonisWindow
+    public partial class ApplicationView : AdonisUI.Controls.AdonisWindow
     {
-        public static readonly DependencyProperty IsDarkProperty = DependencyProperty.Register("IsDark", typeof(bool), typeof(MainWindow), new PropertyMetadata(false, OnIsDarkChanged));
+        public static readonly DependencyProperty IsDarkProperty = DependencyProperty.Register("IsDark", typeof(bool), typeof(ApplicationView), new PropertyMetadata(false, OnIsDarkChanged));
 
-        public MainWindow()
+        public ApplicationView()
         {
             InitializeComponent();
         }
@@ -23,7 +23,7 @@ namespace HWDevelopTool
 
         private static void OnIsDarkChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((MainWindow)d).ChangeTheme((bool)e.OldValue);
+            ((ApplicationView)d).ChangeTheme((bool)e.OldValue);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

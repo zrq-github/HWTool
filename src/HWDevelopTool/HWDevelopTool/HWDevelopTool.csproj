@@ -12,11 +12,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\" />
+    <ProjectReference Include="..\HW.Tool.Common\HW.Tool.Common.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HW.Tool.Common\HW.Tool.Common.csproj" />
+    <Folder Include="Views\Dialogs\" />
   </ItemGroup>
 
 </Project>

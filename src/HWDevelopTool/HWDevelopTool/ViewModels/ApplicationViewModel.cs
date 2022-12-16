@@ -13,18 +13,10 @@ namespace HWDevelopTool.ViewModels
     internal class ApplicationViewModel
         : ViewModel
     {
-        private bool _isReadOnly;
-
         private bool _isTitleBarVisible = false;
 
         public ApplicationViewModel()
         {
-        }
-
-        public bool IsReadOnly
-        {
-            get => _isReadOnly;
-            set => SetProperty(ref _isReadOnly, value);
         }
 
         public bool IsTitleBarVisible
@@ -32,5 +24,12 @@ namespace HWDevelopTool.ViewModels
             get => _isTitleBarVisible;
             set => SetProperty(ref _isTitleBarVisible, value);
         }
+
+        private object currentView;
+
+        /// <summary>
+        /// 当前的视图
+        /// </summary>
+        public object CurrentView { get => currentView; set => SetProperty(ref currentView, value); }
     }
 }

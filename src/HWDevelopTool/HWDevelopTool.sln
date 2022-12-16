@@ -10,7 +10,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.MD = README.MD
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HW.Tool.Common", "HW.Tool.Common\HW.Tool.Common.csproj", "{FB7ADAD3-0C63-48F5-8D69-6165F0845AF0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HW.Tool.Common", "HW.Tool.Common\HW.Tool.Common.csproj", "{FB7ADAD3-0C63-48F5-8D69-6165F0845AF0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ZRQ.UI", "ZRQ.UI", "{E80AE2D6-2DEE-41B4-9851-D00B921A9440}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "ZRQ.UI.Share", "..\..\..\ZRQ.UI\ZRQ.UI.Share\ZRQ.UI.Share.shproj", "{DBAC908E-1781-40FE-B7E5-2A869E4C322C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZRQ.UI", "..\..\..\ZRQ.UI\ZRQ.UI\ZRQ.UI.csproj", "{6BF37D8A-DEB6-4E88-8B89-1E18E05C2778}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HW.Tool.Data", "HW.Tool.Data\HW.Tool.Data.csproj", "{82BE8A92-0014-4F21-9C01-844B6C71592B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,11 +34,27 @@ Global
 		{FB7ADAD3-0C63-48F5-8D69-6165F0845AF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB7ADAD3-0C63-48F5-8D69-6165F0845AF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB7ADAD3-0C63-48F5-8D69-6165F0845AF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BF37D8A-DEB6-4E88-8B89-1E18E05C2778}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BF37D8A-DEB6-4E88-8B89-1E18E05C2778}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BF37D8A-DEB6-4E88-8B89-1E18E05C2778}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BF37D8A-DEB6-4E88-8B89-1E18E05C2778}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82BE8A92-0014-4F21-9C01-844B6C71592B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82BE8A92-0014-4F21-9C01-844B6C71592B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82BE8A92-0014-4F21-9C01-844B6C71592B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82BE8A92-0014-4F21-9C01-844B6C71592B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DBAC908E-1781-40FE-B7E5-2A869E4C322C} = {E80AE2D6-2DEE-41B4-9851-D00B921A9440}
+		{6BF37D8A-DEB6-4E88-8B89-1E18E05C2778} = {E80AE2D6-2DEE-41B4-9851-D00B921A9440}
+	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {189CED91-6F54-4039-9112-EE8564809A2A}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		..\..\..\ZRQ.UI\ZRQ.UI.Share\ZRQ.UI.Share.projitems*{6bf37d8a-deb6-4e88-8b89-1e18e05c2778}*SharedItemsImports = 5
+		..\..\..\ZRQ.UI\ZRQ.UI.Share\ZRQ.UI.Share.projitems*{dbac908e-1781-40fe-b7e5-2a869e4c322c}*SharedItemsImports = 13
 	EndGlobalSection
 EndGlobal
