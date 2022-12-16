@@ -10,11 +10,16 @@ using HWDevelopTool.Framework;
 
 namespace HWDevelopTool.ViewModels
 {
-    class ApplicationViewModel
+    internal class ApplicationViewModel
         : ViewModel
     {
-
         private bool _isReadOnly;
+
+        private bool _isTitleBarVisible = false;
+
+        public ApplicationViewModel()
+        {
+        }
 
         public bool IsReadOnly
         {
@@ -22,19 +27,10 @@ namespace HWDevelopTool.ViewModels
             set => SetProperty(ref _isReadOnly, value);
         }
 
-        private bool _isDeveloperMode;
-
-        private bool _isTitleBarVisible = false;
-
         public bool IsTitleBarVisible
         {
             get => _isTitleBarVisible;
             set => SetProperty(ref _isTitleBarVisible, value);
-        }
-
-        public ApplicationViewModel()
-        {
-
         }
     }
 }

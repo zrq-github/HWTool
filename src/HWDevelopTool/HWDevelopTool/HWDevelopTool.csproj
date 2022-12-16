@@ -15,4 +15,8 @@
     <Folder Include="Views\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\HW.Tool.Common\HW.Tool.Common.csproj" />
+  </ItemGroup>
+
 </Project>

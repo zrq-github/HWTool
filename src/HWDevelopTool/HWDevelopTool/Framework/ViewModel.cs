@@ -59,15 +59,15 @@ class ViewModel
             _validationErrors.Remove(propertyName);
     }
 
-    public event PropertyChangedEventHandler PropertyChanged;
-    public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
+    public event PropertyChangedEventHandler? PropertyChanged;
+    public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
 
     protected void RaisePropertyChanged(string propertyName)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 
-    protected virtual bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
+    protected virtual bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = "")
     {
         if (EqualityComparer<T>.Default.Equals(storage, value))
             return false;
