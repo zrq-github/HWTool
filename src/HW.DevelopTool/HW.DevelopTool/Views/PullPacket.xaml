@@ -16,16 +16,20 @@
     Margin="10,0,10,10">
     <!--这里应该有一个默认标题栏的距离,但是不我知道怎么设置 就先这样吧-->
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition
-                Height="auto"></RowDefinition>
-            <RowDefinition
-                Height="1*"></RowDefinition>
-        </Grid.RowDefinitions>
+    <DockPanel>
         <Label
+            DockPanel.Dock="Top"
             Grid.Row="0"
-            Content="这是一个拉包的页面!! 拉包拉包, 我爱拉包"></Label>
+            Content="这是一个拉包的页面!! 拉包拉包, 我爱拉包"
+            ></Label>
+
+        <!-- 这里搞一个进度条 -->
+        <ProgressBar
+            DockPanel.Dock="Bottom"
+            Height="20"
+            Minimum="0"
+            Maximum="100"
+            Value="50" />
 
         <StackPanel
             VerticalAlignment="Center"
@@ -92,7 +96,6 @@
                 Height="30"
                 Width="100"/>
         </StackPanel>
-
-    </Grid>
+    </DockPanel>
 
 </ContentControl>
