@@ -1,4 +1,4 @@
-﻿using HW.DevelopTool.Framework;
+﻿using ZRQ.UI.UIModel;
 
 namespace HW.DevelopTool.ViewModels;
 

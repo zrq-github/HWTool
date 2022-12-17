@@ -6,8 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
-using HW.DevelopTool.Framework;
 using HW.DevelopTool.Views;
+using ZRQ.UI.UIModel;
 
 namespace HW.DevelopTool.ViewModels;
 
