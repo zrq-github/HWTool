@@ -9,6 +9,5 @@ internal class HomeVM : ViewModelBase, IApplicationContentVM
 
     public void Init()
     {
-        IsLoading = false;
     }
 }

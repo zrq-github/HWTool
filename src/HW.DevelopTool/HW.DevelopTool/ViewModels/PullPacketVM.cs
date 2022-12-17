@@ -24,9 +24,7 @@ namespace HW.DevelopTool.ViewModels
 
         public void Init()
         {
-            IsLoading = true;
             Thread.Sleep(2000);
-            IsLoading = false;
         }
 
         private RelayCommand? pull;

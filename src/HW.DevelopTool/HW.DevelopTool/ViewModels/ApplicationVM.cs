@@ -63,7 +63,8 @@ internal class ApplicationVM
                 {
                     value.IsLoading = true;
                     value.Init();
-                }).ContinueWith((task) => value.IsLoading = false);
+                    value.IsLoading = false;
+                });
             }
 
             SetProperty(ref _selectedPage, value);
