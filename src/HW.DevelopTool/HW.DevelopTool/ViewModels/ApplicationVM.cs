@@ -18,17 +18,12 @@ internal class ApplicationVM
     private bool _isTitleBarVisible = false;
     private object? _currentView = null;
     private IEnumerable<IApplicationContentVM> pagesCollectionView;
-    private object? _selectedPage = null;
+    private IApplicationContentVM? _selectedPage = null;
 
     public ApplicationVM()
     {
         pagesCollectionView = CreateAllPages();
     }
-
-    /// <summary>
-    /// 当前的视图
-    /// </summary>
-    public object? CurrentView { get => _currentView; set => SetProperty(ref _currentView, value); }
 
     /// <summary>
     /// 是否是黑暗主题
@@ -55,10 +50,27 @@ internal class ApplicationVM
     /// </summary>
     public IEnumerable<IApplicationContentVM> PagesCollectionView { get => pagesCollectionView; set => SetProperty(ref pagesCollectionView, value); }
 
-    /// <summary>
-    /// 选择的分页
-    /// </summary>
-    public object? SelectedPage { get => _selectedPage; set => SetProperty(ref _selectedPage, value); }
+    public IApplicationContentVM? SelectedPage
+    {
+        get => _selectedPage;
+        set
+        {
+            value ??= PagesCollectionView.FirstOrDefault();
+
+            if (value != null && !value.IsLoading)
+            {
+                Task.Run(() =>
+                {
+                    value.IsLoading = true;
+                    value.Init();
+                }).ContinueWith((task) => value.IsLoading = false);
+            }
+
+            SetProperty(ref _selectedPage, value);
+
+            //RaisePropertyChanged(nameof(SelectedNavigationGroup));
+        }
+    }
 
     private IEnumerable<IApplicationContentVM> CreateAllPages()
     {

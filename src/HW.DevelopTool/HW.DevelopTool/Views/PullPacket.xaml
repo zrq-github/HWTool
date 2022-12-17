@@ -90,15 +90,15 @@
                     Style="{StaticResource TextBoxDefaultStyle}" />
                 <Button
                     Margin="10,0,0,0"
-                    Content="选择路径" 
-                    Command="{Binding Pull}"/>
+                    Content="选择路径" />
             </StackPanel>
 
             <Button
                 Margin="{adonisUi:Space 1}"
                 Content="拉取"
                 Height="30"
-                Width="100"/>
+                Width="100"
+                Command="{Binding Pull}"/>
         </StackPanel>
     </DockPanel>
 
