@@ -29,7 +29,7 @@
             Height="20"
             Minimum="0"
             Maximum="100"
-            Value="50" />
+            Value="90" />
 
         <StackPanel
             VerticalAlignment="Center"
