@@ -11,12 +11,4 @@
     <PackageReference Include="AdonisUI.ClassicTheme" Version="1.17.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\HW.Tool.Common\HW.Tool.Common.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Views\Dialogs\" />
-  </ItemGroup>
-
 </Project>

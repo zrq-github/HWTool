@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 
-namespace HWDevelopTool.Framework;
+namespace HW.DevelopTool.Framework;
 
 internal class ViewModel
     : INotifyPropertyChanged

@@ -5,7 +5,7 @@ using System.Text;
 using System.Windows;
 using System.Windows.Data;
 
-namespace HWDevelopTool.Converters;
+namespace HW.DevelopTool.Converters;
 
 [ValueConversion(typeof(bool), typeof(bool))]
 internal class BoolToInverseBoolConverter
