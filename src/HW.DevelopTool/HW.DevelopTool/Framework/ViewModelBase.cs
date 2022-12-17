@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 
 namespace HW.DevelopTool.Framework;
 
-internal class ViewModel
+internal class ViewModelBase
     : INotifyPropertyChanged
     , INotifyDataErrorInfo
     , IDataErrorInfo
