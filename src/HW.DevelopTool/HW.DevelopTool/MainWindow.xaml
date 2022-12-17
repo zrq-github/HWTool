@@ -36,7 +36,7 @@
                     Value="11" />
                 <Setter
                     Property="Margin"
-                    Value="{adonisUi:Space 2, 1, 1, 1}" />
+                    Value="{ adonisUi:Space 2, 1, 1, 1}" />
             </Style>
         </ResourceDictionary>
     </Window.Resources>
