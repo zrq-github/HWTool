@@ -13,22 +13,25 @@ namespace HW.DevelopTool.ViewModels
 {
     internal class PullPacketVM : ViewModelBase, IApplicationContentVM
     {
-        public string Name { get; } = "拉包";
-
         private bool _isLoading;
+        private RelayCommand? pull;
+
         public bool IsLoading
         {
             get => _isLoading;
             set => SetProperty(ref _isLoading, value);
         }
 
+        public string Name { get; } = "拉包";
+
+        /// <summary>
+        /// 执行拉包流程
+        /// </summary>
+        public ICommand Pull => pull ??= new RelayCommand(PerformPull);
+
         public void Init()
         {
-            Thread.Sleep(2000);
         }
-
-        private RelayCommand? pull;
-        public ICommand Pull => pull ??= new RelayCommand(PerformPull);
 
         private void PerformPull()
         {

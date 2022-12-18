@@ -26,6 +26,4 @@ public class HWProduct
     /// </summary>
     [JsonPropertyName("Abbr")]
     public string Abbr { get; set; } = string.Empty;
-
-    private string Series { get; set; } = string.Empty;
 }
