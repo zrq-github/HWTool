@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HW.PullFTPFile
 {
-    public class FtpServer
+    class FtpServer
     {
         public static string IP { get; set; } = @"ftp://192.168.0.210/";
     }

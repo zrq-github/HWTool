@@ -26,4 +26,10 @@ public class HWProduct
     /// </summary>
     [JsonPropertyName("Abbr")]
     public string Abbr { get; set; } = string.Empty;
+
+    /// <summary>
+    /// 产品的标识
+    /// </summary>
+    [JsonPropertyName("HWProductEnum")]
+    public HWProductEnum HWProductEnum { get; set; } = HWProductEnum.Invalid;
 }

@@ -11,7 +11,9 @@ namespace HW.Tool.Data
     /// </summary>
     public static class HWProductBuilder
     {
-        public static List<HWProduct> GetAllHWProducts()
+        private static Dictionary<HWProductEnum, HWProduct> hWProducts = GetHWProducts();
+
+        private static List<HWProduct> GetAllHWProducts()
         {
             List<HWProduct> hwProducts = new()
             {
@@ -31,6 +33,30 @@ namespace HW.Tool.Data
         }
 
         /// <summary>
+        /// 默认的红瓦产品
+        /// </summary>
+        public static Dictionary<HWProductEnum, HWProduct> HWProducts { get => hWProducts; }
+
+        public static Dictionary<HWProductEnum, HWProduct> GetHWProducts()
+        {
+            Dictionary<HWProductEnum, HWProduct> products = new()
+            {
+                {HWProductEnum.AEC, CreateAEC()},
+                {HWProductEnum.CC, CreateCC()},
+                {HWProductEnum.CST, CreateCST()},
+                {HWProductEnum.DEC, CreateDEC()},
+                {HWProductEnum.MaxiBIM, CreateMaxiBIM()},
+                {HWProductEnum.MEP, CreateMEP()},
+                {HWProductEnum.PC, CreatePC()},
+                {HWProductEnum.PMEP, CreatePMEP()},
+                {HWProductEnum.ST, CreateST()},
+                {HWProductEnum.XT, CreateXT()},
+                {HWProductEnum.ZK, CreateZK()},
+            };
+            return products;
+        }
+
+        /// <summary>
         /// 建模大师(建筑) - AEC
         /// </summary>
         private static HWProduct CreateAEC()
@@ -40,6 +66,7 @@ namespace HW.Tool.Data
                 Name = "建模大师(建筑)",
                 Description = "建模大师(建筑)",
                 Abbr = "AEC",
+                HWProductEnum = HWProductEnum.AEC
             };
             return product;
         }
@@ -54,6 +81,7 @@ namespace HW.Tool.Data
                 Name = "建模大师(通用)",
                 Description = "建模大师(通用)",
                 Abbr = "CC",
+                HWProductEnum = HWProductEnum.CC
             };
             return product;
         }
@@ -69,6 +97,7 @@ namespace HW.Tool.Data
                 Name = "建模大师(施工)",
                 Description = "建模大师(施工)",
                 Abbr = "CST",
+                HWProductEnum = HWProductEnum.CST
             };
             return product;
         }
@@ -84,6 +113,7 @@ namespace HW.Tool.Data
                 Name = "建模大师(精装)",
                 Description = "建模大师(精装)",
                 Abbr = "DEC",
+                HWProductEnum = HWProductEnum.DEC,
             };
 
             return product;
@@ -99,6 +129,7 @@ namespace HW.Tool.Data
                 Name = "MaxiBIM",
                 Description = "海外产品",
                 Abbr = "MaxiBIM",
+                HWProductEnum = HWProductEnum.MaxiBIM,
             };
             return product;
         }
@@ -113,6 +144,7 @@ namespace HW.Tool.Data
                 Name = "建模大师(机电)",
                 Description = "建模大师系列产品",
                 Abbr = "MEP",
+                HWProductEnum = HWProductEnum.MEP,
             };
             return product;
         }
@@ -127,6 +159,7 @@ namespace HW.Tool.Data
                 Name = "建模大师(PC)",
                 Description = "装配式混凝土",
                 Abbr = "PC",
+                HWProductEnum = HWProductEnum.PC,
             };
             return product;
         }
@@ -141,6 +174,7 @@ namespace HW.Tool.Data
                 Name = "建模大师PMEP",
                 Description = "装配式机电（PMEP）",
                 Abbr = "PMEP",
+                HWProductEnum = HWProductEnum.PMEP,
             };
             return product;
         }
@@ -155,6 +189,7 @@ namespace HW.Tool.Data
                 Name = "建模大师(钢构)",
                 Description = "建模大师(钢构)",
                 Abbr = "ST",
+                HWProductEnum = HWProductEnum.ST,
             };
             return product;
         }
@@ -170,6 +205,7 @@ namespace HW.Tool.Data
                 Name = "协同大师",
                 Description = "协同大师",
                 Abbr = "XT",
+                HWProductEnum = HWProductEnum.XT,
             };
             return product;
         }
@@ -185,6 +221,7 @@ namespace HW.Tool.Data
                 Name = "族库大师",
                 Description = "族库大师",
                 Abbr = "ZK",
+                HWProductEnum = HWProductEnum.ZK,
             };
             return product;
         }

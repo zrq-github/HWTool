@@ -18,8 +18,11 @@ namespace HW.DevelopTool.ViewModels
             set => SetProperty(ref _isLoading, value);
         }
 
+        public bool IsInit { get; set; } = false;
+
         public virtual void Init()
         {
+            IsInit = true;
         }
     }
 }

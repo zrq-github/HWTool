@@ -11,8 +11,7 @@
         <view:Home></view:Home>
     </DataTemplate>
 
-    <DataTemplate
-        DataType="{x:Type vm:PullPacketVM}">
+    <DataTemplate DataType="{x:Type vm:PullPacketVM}">
         <view:PullPacket></view:PullPacket>
     </DataTemplate>
 

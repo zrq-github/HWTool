@@ -15,10 +15,9 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     x:Name="win"
-    Margin="10,0,10,10">
-    <ContentControl.DataContext>
-        <viewModels:PullPacketVM></viewModels:PullPacketVM>
-    </ContentControl.DataContext>
+    Margin="10,0,10,10"
+    d:DataContext="{d:DesignInstance Type=viewModels:PullPacketVM}">
+
     <!--这里应该有一个默认标题栏的距离,但是不我知道怎么设置 就先这样吧-->
 
     <DockPanel>
@@ -54,6 +53,8 @@
                 <ComboBox
                     Width="200"
                     IsEditable="True"
+                    Text="{Binding SelectPullProduct}"
+                    ItemsSource="{Binding PullPackets,Converter={x:Static converters:HWProductToNameConverter.Instance}}"
                     adonisExtensions:WatermarkExtension.Watermark="Select an 产品"
                     VerticalContentAlignment="Center"
                     HorizontalContentAlignment="Center" />
