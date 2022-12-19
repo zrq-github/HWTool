@@ -67,7 +67,7 @@ namespace HW.DevelopTool.ViewModels
                 {
                     var versions = _ftpOperater.GetVersions(product.HWProduct.HWProductEnum);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
 
                 }

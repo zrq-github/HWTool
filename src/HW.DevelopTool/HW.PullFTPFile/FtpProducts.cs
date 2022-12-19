@@ -23,25 +23,29 @@ namespace HW.PullFTPFile
         public static Dictionary<HWProductEnum, string> FtpProductNames => ftpProductNames;
 
         /// <summary>
+        /// 获取Ftp上文件的名字
+        /// </summary>
+        /// <remarks>
+        /// 就目前来说 ftp上的名字是由  BuildMaster(产品缩写) 组成
+        /// </remarks>
+        public static string GetFtpProductName(HWProductEnum product)
+        {
+            return $"BuildMaster({product.ToString()})";
+        }
+
+        /// <summary>
         /// 获取产品名字的对应关系
         /// </summary>
         /// <returns></returns>
         public static Dictionary<HWProductEnum, string> GetFtpProductNames()
         {
-            Dictionary<HWProductEnum, string> ftpProductNames = new()
+            Dictionary<HWProductEnum, string> ftpProductNames = new();
+
+            foreach (HWProductEnum product in Enum.GetValues(typeof(HWProductEnum)))
             {
-                {HWProductEnum.CC,"BuildMaster(CC)" },
-                {HWProductEnum.AEC,"BuildMaster(AEC)" },
-                {HWProductEnum.MEP,"BuildMaster(MEP)" },
-                {HWProductEnum.PMEP,"BuildMaster(PMEP)" },
-                {HWProductEnum.CST,"BuildMaster(CST)" },
-                {HWProductEnum.PC,"BuildMaster(PC)" },
-                {HWProductEnum.DEC,"BuildMaster(DEC)" },
-                {HWProductEnum.ST,"BuildMaster(ST)" },
-                {HWProductEnum.XT,"BuildMaster(XT)" },
-                {HWProductEnum.ZK,"BuildMaster(ZK)" },
-                {HWProductEnum.MaxiBIM,"BuildMaster(MaxiBIM)" },
-            };
+                ftpProductNames[product] = GetFtpProductName(product);
+            }
+
             return ftpProductNames;
         }
     }
