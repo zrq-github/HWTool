@@ -2,12 +2,7 @@
 
 namespace HW.DevelopTool.ViewModels;
 
-internal class HomeVM : ViewModelBase, IApplicationContentVM
+internal class HomeVM : ApplicationContentVM
 {
-    public string Name { get; } = "Home";
-    public bool IsLoading { get; set; } = false;
-
-    public void Init()
-    {
-    }
+    public override string Name { get; } = "Home";
 }

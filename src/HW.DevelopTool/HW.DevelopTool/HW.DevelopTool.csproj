@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\ZRQ.UI\ZRQ.UI\ZRQ.UI.csproj" />
+    <ProjectReference Include="..\HW.PullFTPFile\HW.PullFTPFile.csproj" />
   </ItemGroup>
 
 </Project>

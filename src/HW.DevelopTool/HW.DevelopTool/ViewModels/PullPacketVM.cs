@@ -11,26 +11,27 @@ using ZRQ.UI.UIModel;
 
 namespace HW.DevelopTool.ViewModels
 {
-    internal class PullPacketVM : ViewModelBase, IApplicationContentVM
+    internal class PullPacketVM : ApplicationContentVM
     {
-        private bool _isLoading;
-        private RelayCommand? pull;
+        private RelayCommand? _pull;
+        private bool _isShowProgressBar = false;
 
-        public bool IsLoading
-        {
-            get => _isLoading;
-            set => SetProperty(ref _isLoading, value);
-        }
-
-        public string Name { get; } = "拉包";
+        public override string Name { get; } = "拉包";
 
         /// <summary>
         /// 执行拉包流程
         /// </summary>
-        public ICommand Pull => pull ??= new RelayCommand(PerformPull);
+        public ICommand Pull => _pull ??= new RelayCommand(PerformPull);
 
-        public void Init()
+        /// <summary>
+        /// 是否显示进度条
+        /// </summary>
+        public bool IsShowProgressBar { get => _isShowProgressBar; set => SetProperty(ref _isShowProgressBar, value); }
+
+        public override void Init()
         {
+            base.Init();
+            // 初始化拉包数据源;
         }
 
         private void PerformPull()
