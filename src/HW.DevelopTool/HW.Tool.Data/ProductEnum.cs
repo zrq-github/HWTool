@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HW.Tool.Data
 {
-    public enum HWProductEnum
+    public enum ProductEnum
     {
         /// <summary>
         /// 无效

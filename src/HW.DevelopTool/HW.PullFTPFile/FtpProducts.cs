@@ -12,7 +12,7 @@ namespace HW.PullFTPFile
     /// </summary>
     internal class FtpProducts
     {
-        private static readonly Dictionary<HWProductEnum, string> ftpProductNames = GetFtpProductNames();
+        private static readonly Dictionary<ProductEnum, string> ftpProductNames = GetFtpProductNames();
 
         public FtpProducts()
         { }
@@ -20,7 +20,7 @@ namespace HW.PullFTPFile
         /// <summary>
         /// Ftp产品的名字
         /// </summary>
-        public static Dictionary<HWProductEnum, string> FtpProductNames => ftpProductNames;
+        public static Dictionary<ProductEnum, string> FtpProductNames => ftpProductNames;
 
         /// <summary>
         /// 获取Ftp上文件的名字
@@ -28,7 +28,7 @@ namespace HW.PullFTPFile
         /// <remarks>
         /// 就目前来说 ftp上的名字是由  BuildMaster(产品缩写) 组成
         /// </remarks>
-        public static string GetFtpProductName(HWProductEnum product)
+        public static string GetFtpProductName(ProductEnum product)
         {
             return $"BuildMaster({product.ToString()})";
         }
@@ -37,11 +37,11 @@ namespace HW.PullFTPFile
         /// 获取产品名字的对应关系
         /// </summary>
         /// <returns></returns>
-        public static Dictionary<HWProductEnum, string> GetFtpProductNames()
+        public static Dictionary<ProductEnum, string> GetFtpProductNames()
         {
-            Dictionary<HWProductEnum, string> ftpProductNames = new();
+            Dictionary<ProductEnum, string> ftpProductNames = new();
 
-            foreach (HWProductEnum product in Enum.GetValues(typeof(HWProductEnum)))
+            foreach (ProductEnum product in Enum.GetValues(typeof(ProductEnum)))
             {
                 ftpProductNames[product] = GetFtpProductName(product);
             }

@@ -5,9 +5,9 @@ namespace HW.Tool.Data;
 /// <summary>
 /// 红瓦的产品信息
 /// </summary>
-public class HWProduct
+public class Product
 {
-    public HWProduct() { }
+    public Product() { }
 
     /// <summary>
     /// 产品的名字
@@ -31,5 +31,5 @@ public class HWProduct
     /// 产品的标识
     /// </summary>
     [JsonPropertyName("HWProductEnum")]
-    public HWProductEnum HWProductEnum { get; set; } = HWProductEnum.Invalid;
+    public ProductEnum HWProductEnum { get; set; } = ProductEnum.Invalid;
 }

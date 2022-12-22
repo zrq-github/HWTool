@@ -76,7 +76,7 @@ internal class ApplicationVM
     private IEnumerable<IApplicationContentVM> CreateAllPages()
     {
         yield return new HomeVM();
-        yield return new PullPacketVM();
+        yield return new PullProductVM();
         yield break;
     }
 }

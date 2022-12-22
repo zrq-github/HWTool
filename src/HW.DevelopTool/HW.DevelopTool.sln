@@ -15,6 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HW.PullFTPFile", "HW.PullFT
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DB9A5AC1-EBF5-4894-A21C-83F1CF160267}"
 	ProjectSection(SolutionItems) = preProject
+		HW.PullFTPFile.md = HW.PullFTPFile.md
 		README.MD = README.MD
 	EndProjectSection
 EndProject

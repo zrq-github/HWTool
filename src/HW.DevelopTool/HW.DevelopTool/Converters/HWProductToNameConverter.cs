@@ -16,7 +16,7 @@ namespace HW.DevelopTool.Converters
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is IEnumerable<HWProduct> hwProducts)
+            if (value is IEnumerable<Product> hwProducts)
             {
                 List<string> strings = new List<string>();
                 foreach (var product in hwProducts)
@@ -26,7 +26,7 @@ namespace HW.DevelopTool.Converters
                 return strings;
             }
 
-            if (value is HWProduct hwProduct)
+            if (value is Product hwProduct)
             {
                 return hwProduct.Name;
             }

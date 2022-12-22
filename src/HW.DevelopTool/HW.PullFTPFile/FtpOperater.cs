@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace HW.PullFTPFile
 {
-    class FtpServer
+    internal abstract class FtpOperater
     {
-        public static string IP { get; set; } = @"ftp://192.168.0.210/";
+        public IFtpServerConfig? FtpServer { get; set; }
     }
 }

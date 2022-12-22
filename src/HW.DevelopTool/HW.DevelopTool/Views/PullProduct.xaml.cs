@@ -18,9 +18,9 @@ namespace HW.DevelopTool.Views
     /// <summary>
     /// Interaction logic for PullPacket.xaml
     /// </summary>
-    public partial class PullPacket : ContentControl
+    public partial class PullProduct : ContentControl
     {
-        public PullPacket()
+        public PullProduct()
         {
             InitializeComponent();
         }

@@ -9,13 +9,13 @@ namespace HW.Tool.Data
     /// <summary>
     /// HW产品生成器类
     /// </summary>
-    public static class HWProductBuilder
+    public static class ProductBuilder
     {
-        private static Dictionary<HWProductEnum, HWProduct> hWProducts = GetHWProducts();
+        private static Dictionary<ProductEnum, Product> hWProducts = GetHWProducts();
 
-        private static List<HWProduct> GetAllHWProducts()
+        private static List<Product> GetAllHWProducts()
         {
-            List<HWProduct> hwProducts = new()
+            List<Product> hwProducts = new()
             {
                 CreateCC(),
                 CreateAEC(),
@@ -35,23 +35,23 @@ namespace HW.Tool.Data
         /// <summary>
         /// 默认的红瓦产品
         /// </summary>
-        public static Dictionary<HWProductEnum, HWProduct> HWProducts { get => hWProducts; }
+        public static Dictionary<ProductEnum, Product> HWProducts { get => hWProducts; }
 
-        public static Dictionary<HWProductEnum, HWProduct> GetHWProducts()
+        public static Dictionary<ProductEnum, Product> GetHWProducts()
         {
-            Dictionary<HWProductEnum, HWProduct> products = new()
+            Dictionary<ProductEnum, Product> products = new()
             {
-                {HWProductEnum.AEC, CreateAEC()},
-                {HWProductEnum.CC, CreateCC()},
-                {HWProductEnum.CST, CreateCST()},
-                {HWProductEnum.DEC, CreateDEC()},
-                {HWProductEnum.MaxiBIM, CreateMaxiBIM()},
-                {HWProductEnum.MEP, CreateMEP()},
-                {HWProductEnum.PC, CreatePC()},
-                {HWProductEnum.PMEP, CreatePMEP()},
-                {HWProductEnum.ST, CreateST()},
-                {HWProductEnum.XT, CreateXT()},
-                {HWProductEnum.ZK, CreateZK()},
+                {ProductEnum.AEC, CreateAEC()},
+                {ProductEnum.CC, CreateCC()},
+                {ProductEnum.CST, CreateCST()},
+                {ProductEnum.DEC, CreateDEC()},
+                {ProductEnum.MaxiBIM, CreateMaxiBIM()},
+                {ProductEnum.MEP, CreateMEP()},
+                {ProductEnum.PC, CreatePC()},
+                {ProductEnum.PMEP, CreatePMEP()},
+                {ProductEnum.ST, CreateST()},
+                {ProductEnum.XT, CreateXT()},
+                {ProductEnum.ZK, CreateZK()},
             };
             return products;
         }
@@ -59,14 +59,14 @@ namespace HW.Tool.Data
         /// <summary>
         /// 建模大师(建筑) - AEC
         /// </summary>
-        private static HWProduct CreateAEC()
+        private static Product CreateAEC()
         {
-            HWProduct product = new()
+            Product product = new()
             {
                 Name = "建模大师(建筑)",
                 Description = "建模大师(建筑)",
                 Abbr = "AEC",
-                HWProductEnum = HWProductEnum.AEC
+                HWProductEnum = ProductEnum.AEC
             };
             return product;
         }
@@ -74,14 +74,14 @@ namespace HW.Tool.Data
         /// <summary>
         /// 建模大师(通用) - CC
         /// </summary>
-        private static HWProduct CreateCC()
+        private static Product CreateCC()
         {
-            HWProduct product = new()
+            Product product = new()
             {
                 Name = "建模大师(通用)",
                 Description = "建模大师(通用)",
                 Abbr = "CC",
-                HWProductEnum = HWProductEnum.CC
+                HWProductEnum = ProductEnum.CC
             };
             return product;
         }
@@ -90,14 +90,14 @@ namespace HW.Tool.Data
         /// 建模大师(施工) - CST
         /// </summary>
         /// <returns> </returns>
-        private static HWProduct CreateCST()
+        private static Product CreateCST()
         {
-            HWProduct product = new()
+            Product product = new()
             {
                 Name = "建模大师(施工)",
                 Description = "建模大师(施工)",
                 Abbr = "CST",
-                HWProductEnum = HWProductEnum.CST
+                HWProductEnum = ProductEnum.CST
             };
             return product;
         }
@@ -106,14 +106,14 @@ namespace HW.Tool.Data
         /// 建模大师(精装) - DEC
         /// </summary>
         /// <returns> </returns>
-        private static HWProduct CreateDEC()
+        private static Product CreateDEC()
         {
-            HWProduct product = new()
+            Product product = new()
             {
                 Name = "建模大师(精装)",
                 Description = "建模大师(精装)",
                 Abbr = "DEC",
-                HWProductEnum = HWProductEnum.DEC,
+                HWProductEnum = ProductEnum.DEC,
             };
 
             return product;
@@ -122,14 +122,14 @@ namespace HW.Tool.Data
         /// <summary>
         /// MaxiBIM
         /// </summary>
-        private static HWProduct CreateMaxiBIM()
+        private static Product CreateMaxiBIM()
         {
-            HWProduct product = new()
+            Product product = new()
             {
                 Name = "MaxiBIM",
                 Description = "海外产品",
                 Abbr = "MaxiBIM",
-                HWProductEnum = HWProductEnum.MaxiBIM,
+                HWProductEnum = ProductEnum.MaxiBIM,
             };
             return product;
         }
@@ -137,14 +137,14 @@ namespace HW.Tool.Data
         /// <summary>
         /// 建模大师(机电) - MEP
         /// </summary>
-        private static HWProduct CreateMEP()
+        private static Product CreateMEP()
         {
-            HWProduct product = new()
+            Product product = new()
             {
                 Name = "建模大师(机电)",
                 Description = "建模大师系列产品",
                 Abbr = "MEP",
-                HWProductEnum = HWProductEnum.MEP,
+                HWProductEnum = ProductEnum.MEP,
             };
             return product;
         }
@@ -152,14 +152,14 @@ namespace HW.Tool.Data
         /// <summary>
         /// 装配式混凝土(PC) - PC
         /// </summary>
-        private static HWProduct CreatePC()
+        private static Product CreatePC()
         {
-            HWProduct product = new()
+            Product product = new()
             {
                 Name = "建模大师(PC)",
                 Description = "装配式混凝土",
                 Abbr = "PC",
-                HWProductEnum = HWProductEnum.PC,
+                HWProductEnum = ProductEnum.PC,
             };
             return product;
         }
@@ -167,14 +167,14 @@ namespace HW.Tool.Data
         /// <summary>
         /// 建模大师PMEP - PMEP
         /// </summary>
-        private static HWProduct CreatePMEP()
+        private static Product CreatePMEP()
         {
-            HWProduct product = new()
+            Product product = new()
             {
                 Name = "建模大师PMEP",
                 Description = "装配式机电（PMEP）",
                 Abbr = "PMEP",
-                HWProductEnum = HWProductEnum.PMEP,
+                HWProductEnum = ProductEnum.PMEP,
             };
             return product;
         }
@@ -182,14 +182,14 @@ namespace HW.Tool.Data
         /// <summary>
         /// 建模大师(钢构) - ST
         /// </summary>
-        private static HWProduct CreateST()
+        private static Product CreateST()
         {
-            HWProduct product = new()
+            Product product = new()
             {
                 Name = "建模大师(钢构)",
                 Description = "建模大师(钢构)",
                 Abbr = "ST",
-                HWProductEnum = HWProductEnum.ST,
+                HWProductEnum = ProductEnum.ST,
             };
             return product;
         }
@@ -198,14 +198,14 @@ namespace HW.Tool.Data
         /// 协同大师 - XT
         /// </summary>
         /// <returns> </returns>
-        private static HWProduct CreateXT()
+        private static Product CreateXT()
         {
-            HWProduct product = new()
+            Product product = new()
             {
                 Name = "协同大师",
                 Description = "协同大师",
                 Abbr = "XT",
-                HWProductEnum = HWProductEnum.XT,
+                HWProductEnum = ProductEnum.XT,
             };
             return product;
         }
@@ -214,14 +214,14 @@ namespace HW.Tool.Data
         /// 族库大师
         /// </summary>
         /// <returns> </returns>
-        private static HWProduct CreateZK()
+        private static Product CreateZK()
         {
-            HWProduct product = new()
+            Product product = new()
             {
                 Name = "族库大师",
                 Description = "族库大师",
                 Abbr = "ZK",
-                HWProductEnum = HWProductEnum.ZK,
+                HWProductEnum = ProductEnum.ZK,
             };
             return product;
         }
