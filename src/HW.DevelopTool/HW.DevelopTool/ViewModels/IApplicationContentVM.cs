@@ -5,12 +5,26 @@ using System.Text;
 
 namespace HW.DevelopTool.ViewModels
 {
-    interface IApplicationContentVM
+    internal interface IApplicationContentVM
     {
-        string Name { get; }
-
+        /// <summary>
+        /// 是否正在加载
+        /// </summary>
         bool IsLoading { get; set; }
 
+        /// <summary>
+        /// 视图的名字
+        /// </summary>
+        string Name { get; }
+
+        /// <summary>
+        /// 加载提示
+        /// </summary>
+        string LoadingTips { get; set; }
+
+        /// <summary>
+        /// 是否正在初始化
+        /// </summary>
         void Init();
     }
 }

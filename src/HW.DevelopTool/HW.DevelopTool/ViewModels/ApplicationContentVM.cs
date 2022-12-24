@@ -5,9 +5,12 @@ namespace HW.DevelopTool.ViewModels
 {
     internal abstract class ApplicationContentVM : ViewModelBase, IApplicationContentVM
     {
-        private bool _isLoading = false;
+        private readonly static string loadingTips = "正在加载界面...";
 
-        public abstract string Name { get; }
+        private bool _isLoading = false;
+        private string _loadingTips = loadingTips;
+
+        public bool IsInit { get; set; } = false;
 
         /// <summary>
         /// 是否正在加载
@@ -18,11 +21,36 @@ namespace HW.DevelopTool.ViewModels
             set => SetProperty(ref _isLoading, value);
         }
 
-        public bool IsInit { get; set; } = false;
+        /// <summary>
+        /// 初始化的提示
+        /// </summary>
+        public string LoadingTips { get => _loadingTips; set => SetProperty(ref _loadingTips, value); }
 
-        public virtual void Init()
+        public abstract string Name { get; }
+
+        public void Init()
         {
-            IsInit = true;
+            IsLoading = true;
+
+            if (!IsInit)
+            {
+                IsInit = CustomInit();
+            }
+
+            IsLoading = false;
+            LoadingTips = loadingTips;
+        }
+
+        /// <summary>
+        /// 实现下面界面格式的初始化
+        /// </summary>
+        public virtual bool CustomInit()
+        {
+            return true;
+        }
+
+        private void InitAfter()
+        {
         }
     }
 }

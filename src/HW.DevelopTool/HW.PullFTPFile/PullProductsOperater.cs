@@ -27,35 +27,24 @@ namespace HW.PullFTPFile
         /// <summary>
         /// 初始化Ftp
         /// </summary>
-        public void InitFtp(IFtpServerConfig ftpServer)
+        public FtpClient InitFtp(IFtpServerConfig ftpServer)
         {
             // 如果ftp存在, 销毁重新创建
             _ftpClient?.AutoDispose();
 
-            try
+            string username = ftpServer.Username;
+            string password = ftpServer.Password;
+            int port = ftpServer.Port;
+
+            FtpConfig ftpConfig = new()
             {
-                string username = ftpServer.Username;
-                string password = ftpServer.Password;
-                int port = ftpServer.Port;
+                EncryptionMode = FtpEncryptionMode.None,
+                ValidateAnyCertificate = true
+            };
+            _ftpClient = new(ftpServer.Host, username, password, port, ftpConfig);
+            _ftpServerConfig = ftpServer;
 
-                FtpConfig ftpConfig = new()
-                {
-                    EncryptionMode = FtpEncryptionMode.None,
-                    ValidateAnyCertificate = true
-                };
-                _ftpClient = new(ftpServer.Host, username, password, port, ftpConfig);
-
-                NetworkCredential networkCredential = new()
-                {
-                    UserName = ftpServer.Username,
-                    Password = ftpServer.Password,
-                };
-                _ftpServerConfig = ftpServer;
-            }
-            catch (Exception)
-            {
-
-            }
+            return _ftpClient;
         }
 
         private Dictionary<ProductEnum, string> FtpProductNames { get; set; } = new();

@@ -83,37 +83,49 @@ namespace HW.DevelopTool.ViewModels
 
         public override string Name { get; } = "拉包";
 
-        public override void Init()
+        public override bool CustomInit()
         {
-            //if (this.IsInit) return;
-            base.Init();
             Clear();
 
-            // 初始化ftp
-            FtpServerConfig ftpServerConfig = FtpServerConfig.FtpProductsConfig();
-            _ftpOperater.InitFtp(ftpServerConfig);
-            // 初始化产品
-            var productDic = ProductBuilder.GetHWProducts();
-            foreach (var product in productDic.Values)
+            try
             {
-                PullProducts.Add(new(product));
+                this.LoadingTips = "正在初始化Ftp";
+                FtpServerConfig ftpServerConfig = FtpServerConfig.FtpProductsConfig();
+                FtpClient ftpClient = _ftpOperater.InitFtp(ftpServerConfig);
+
+                // 初始化产品
+                var productDic = ProductBuilder.GetHWProducts();
+                foreach (var product in productDic.Values)
+                {
+                    PullProducts.Add(new(product));
+                }
+                // 初始化产品版本
+                foreach (var pullProduct in PullProducts)
+                {
+                    var productEnum = pullProduct.HWProduct.HWProductEnum;
+                    try
+                    {
+                        var ftpVersions = _ftpOperater.GetVersionPaths(productEnum);
+                        pullProduct.FtpVersions = ftpVersions;
+                    }
+                    catch (Exception)
+                    {
+                    }
+                    finally
+                    {
+                    }
+                }
+                SelectProductName = productDic.First().Value.Name;
             }
-            // 初始化产品版本
-            foreach (var pullProduct in PullProducts)
+            catch (Exception ex)
             {
-                var productEnum = pullProduct.HWProduct.HWProductEnum;
-                try
-                {
-                    var ftpVersions = _ftpOperater.GetVersionPaths(productEnum);
-                    pullProduct.FtpVersions = ftpVersions;
-                }
-                catch (Exception) { }
-                finally
-                {
-                }
+                return false;
+            }
+            finally
+            {
             }
 
-            SelectProductName = productDic.First().Value.Name;
+            return true;
         }
 
         private void Clear()

@@ -17,8 +17,8 @@ internal class ApplicationVM
     private bool _isReadOnly = false;
     private bool _isTitleBarVisible = false;
     private object? _currentView = null;
-    private IEnumerable<IApplicationContentVM> pagesCollectionView;
-    private IApplicationContentVM? _selectedPage = null;
+    private IEnumerable<ApplicationContentVM> pagesCollectionView;
+    private ApplicationContentVM? _selectedPage = null;
 
     public ApplicationVM()
     {
@@ -48,9 +48,9 @@ internal class ApplicationVM
     /// <summary>
     /// 总共的分页
     /// </summary>
-    public IEnumerable<IApplicationContentVM> PagesCollectionView { get => pagesCollectionView; set => SetProperty(ref pagesCollectionView, value); }
+    public IEnumerable<ApplicationContentVM> PagesCollectionView { get => pagesCollectionView; set => SetProperty(ref pagesCollectionView, value); }
 
-    public IApplicationContentVM? SelectedPage
+    public ApplicationContentVM? SelectedPage
     {
         get => _selectedPage;
         set
@@ -61,9 +61,7 @@ internal class ApplicationVM
             {
                 Task.Run(() =>
                 {
-                    value.IsLoading = true;
                     value.Init();
-                    value.IsLoading = false;
                 });
             }
 
@@ -73,7 +71,7 @@ internal class ApplicationVM
         }
     }
 
-    private IEnumerable<IApplicationContentVM> CreateAllPages()
+    private IEnumerable<ApplicationContentVM> CreateAllPages()
     {
         yield return new HomeVM();
         yield return new PullProductVM();

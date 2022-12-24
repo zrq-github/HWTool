@@ -15,7 +15,7 @@ internal class BoolToInverseBoolConverter
 
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        if (!(value is bool boolValue))
+        if (value is not bool boolValue)
             return DependencyProperty.UnsetValue;
 
         return !boolValue;
