@@ -27,6 +27,7 @@ namespace HW.DevelopTool.ViewModels
         private string? _selectProductName = string.Empty;
         private List<string> _productVersions = new();
         private string _productVersion = string.Empty;
+        private List<FtpProdut> _pullProducts = new();
 
         public PullProductVM()
         {
@@ -40,7 +41,7 @@ namespace HW.DevelopTool.ViewModels
         /// <summary>
         /// 拉包的数据源
         /// </summary>
-        public List<FtpProdut> PullProducts { get; set; } = new();
+        public List<FtpProdut> PullProducts { get => _pullProducts; set => SetProperty(ref _pullProducts, value);}
 
         /// <summary>
         /// 选择拉取的产品
@@ -98,10 +99,7 @@ namespace HW.DevelopTool.ViewModels
                 var products = ProductBuilder.AllProducts;
                 var ftpProdcts = _ftpOperater.GetFtpProduts();
 
-                foreach (var ftpProdct in ftpProdcts)
-                {
-                    PullProducts.Add(new(ftpProdct));
-                }
+                PullProducts = ftpProdcts;
             }
             catch (Exception ex)
             {

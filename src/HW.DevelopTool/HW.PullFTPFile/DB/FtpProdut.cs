@@ -33,5 +33,10 @@ namespace HW.PullFTPFile.DB
         /// FTP上的名字
         /// </summary>
         public string FtpName { get; set; } = string.Empty;
+
+        public override string? ToString()
+        {
+            return base.ToString();
+        }
     }
 }

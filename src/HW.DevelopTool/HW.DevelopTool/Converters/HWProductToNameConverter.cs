@@ -16,10 +16,10 @@ namespace HW.DevelopTool.Converters
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is IEnumerable<Product> hwProducts)
+            if (value is IEnumerable<IProduct> products)
             {
-                List<string> strings = new List<string>();
-                foreach (var product in hwProducts)
+                List<string> strings = new();
+                foreach (var product in products)
                 {
                     strings.Add(product.Name);
                 }
