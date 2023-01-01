@@ -7,19 +7,8 @@ namespace HW.Tool.Data;
 /// </summary>
 public class Product
 {
-    public Product() { }
-
-    /// <summary>
-    /// 产品的名字
-    /// </summary>
-    [JsonPropertyName("Name")]
-    public string Name { get; set; } = string.Empty;
-
-    /// <summary>
-    /// 产品的描述
-    /// </summary>
-    [JsonPropertyName("Description")]
-    public string Description { get; set; } = string.Empty;
+    public Product()
+    { }
 
     /// <summary>
     /// 产品的简写
@@ -28,8 +17,20 @@ public class Product
     public string Abbr { get; set; } = string.Empty;
 
     /// <summary>
+    /// 产品的描述
+    /// </summary>
+    [JsonPropertyName("Description")]
+    public string Description { get; set; } = string.Empty;
+
+    /// <summary>
     /// 产品的标识
     /// </summary>
-    [JsonPropertyName("HWProductEnum")]
-    public ProductEnum HWProductEnum { get; set; } = ProductEnum.Invalid;
+    [JsonPropertyName("Id")]
+    public string Id { get; set; } = string.Empty;
+
+    /// <summary>
+    /// 产品的名字
+    /// </summary>
+    [JsonPropertyName("Name")]
+    public string Name { get; set; } = string.Empty;
 }

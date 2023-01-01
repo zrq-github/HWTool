@@ -102,11 +102,11 @@ namespace HW.DevelopTool.ViewModels
                 // 初始化产品版本
                 foreach (var pullProduct in PullProducts)
                 {
-                    var productEnum = pullProduct.HWProduct.HWProductEnum;
+                    //var productEnum = pullProduct.Product.HWProductEnum;
                     try
                     {
-                        var ftpVersions = _ftpOperater.GetVersionPaths(productEnum);
-                        pullProduct.FtpVersions = ftpVersions;
+                        //var ftpVersions = _ftpOperater.GetVersionPaths(productEnum);
+                        //pullProduct.FtpVersions = ftpVersions;
                     }
                     catch (Exception)
                     {

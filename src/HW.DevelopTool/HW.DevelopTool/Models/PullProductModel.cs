@@ -21,13 +21,13 @@ namespace HW.DevelopTool.Models
 
         public PullProductModel(Product hwProduct)
         {
-            HWProduct = hwProduct;
+            Product = hwProduct;
         }
 
         /// <summary>
         /// 产品
         /// </summary>
-        public Product HWProduct { get; set; } = new();
+        public Product Product { get; set; } = new();
 
         /// <summary>
         /// Ftp产品的版本信息
@@ -36,7 +36,7 @@ namespace HW.DevelopTool.Models
 
         public string ShowName()
         {
-            return $"{HWProduct.Name} - {HWProduct.Abbr}";
+            return $"{Product.Name} - {Product.Abbr}";
         }
 
         public override string ToString()

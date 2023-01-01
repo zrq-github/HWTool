@@ -18,4 +18,8 @@
     <ProjectReference Include="..\HW.PullFTPFile\HW.PullFTPFile.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Config\" />
+  </ItemGroup>
+
 </Project>
