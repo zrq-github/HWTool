@@ -16,27 +16,16 @@ namespace HW.DevelopTool.Models
     /// </summary>
     internal class PullProductModel
     {
-        public PullProductModel()
-        { }
-
-        public PullProductModel(Product hwProduct)
+        public PullProductModel(FtpProdut ftpProdct)
         {
-            Product = hwProduct;
+            FtpProdct = ftpProdct;
         }
 
-        /// <summary>
-        /// 产品
-        /// </summary>
-        public Product Product { get; set; } = new();
-
-        /// <summary>
-        /// Ftp产品的版本信息
-        /// </summary>
-        public List<FtpProductVersion> FtpVersions { get; internal set; } = new();
+        public FtpProdut FtpProdct { get; }
 
         public string ShowName()
         {
-            return $"{Product.Name} - {Product.Abbr}";
+            return $"{FtpProdct.Name} - {FtpProdct.Id}";
         }
 
         public override string ToString()

@@ -2,11 +2,13 @@
 using HW.DevelopTool.Models;
 using HW.DevelopTool.Views;
 using HW.PullFTPFile;
+using HW.PullFTPFile.DB;
 using HW.Tool.Data;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -25,7 +27,6 @@ namespace HW.DevelopTool.ViewModels
         private string? _selectProductName = string.Empty;
         private List<string> _productVersions = new();
         private string _productVersion = string.Empty;
-        private List<PullProductModel> _pullProducts = new();
 
         public PullProductVM()
         {
@@ -39,7 +40,7 @@ namespace HW.DevelopTool.ViewModels
         /// <summary>
         /// 拉包的数据源
         /// </summary>
-        public List<PullProductModel> PullProducts { get => _pullProducts; set => _pullProducts = value; }
+        public List<FtpProdut> PullProducts { get; set; } = new();
 
         /// <summary>
         /// 选择拉取的产品
@@ -58,15 +59,15 @@ namespace HW.DevelopTool.ViewModels
         {
             if (null == selectProductName) { return; }
 
-            foreach (var pullProduct in _pullProducts)
-            {
-                if (pullProduct.ShowName().Equals(selectProductName))
-                {
-                    var versions = pullProduct.FtpVersions.ConvertAll(p => p.Version);
-                    ProductVersions = versions;
-                    return;
-                }
-            }
+            //foreach (var pullProduct in _pullProducts)
+            //{
+            //    if (pullProduct.ShowName().Equals(selectProductName))
+            //    {
+            //        //var versions = pullProduct.FtpVersions.ConvertAll(p => p.Version);
+            //        //ProductVersions = versions;
+            //        return;
+            //    }
+            //}
         }
 
         /// <summary>
@@ -94,28 +95,13 @@ namespace HW.DevelopTool.ViewModels
                 FtpClient ftpClient = _ftpOperater.InitFtp(ftpServerConfig);
 
                 // 初始化产品
-                var productDic = ProductBuilder.GetHWProducts();
-                foreach (var product in productDic.Values)
+                var products = ProductBuilder.AllProducts;
+                var ftpProdcts = _ftpOperater.GetFtpProduts();
+
+                foreach (var ftpProdct in ftpProdcts)
                 {
-                    PullProducts.Add(new(product));
+                    PullProducts.Add(new(ftpProdct));
                 }
-                // 初始化产品版本
-                foreach (var pullProduct in PullProducts)
-                {
-                    //var productEnum = pullProduct.Product.HWProductEnum;
-                    try
-                    {
-                        //var ftpVersions = _ftpOperater.GetVersionPaths(productEnum);
-                        //pullProduct.FtpVersions = ftpVersions;
-                    }
-                    catch (Exception)
-                    {
-                    }
-                    finally
-                    {
-                    }
-                }
-                SelectProductName = productDic.First().Value.Name;
             }
             catch (Exception ex)
             {

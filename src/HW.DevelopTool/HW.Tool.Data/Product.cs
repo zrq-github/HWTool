@@ -5,7 +5,7 @@ namespace HW.Tool.Data;
 /// <summary>
 /// 红瓦的产品信息
 /// </summary>
-public class Product
+public class Product : IProduct
 {
     public Product()
     { }

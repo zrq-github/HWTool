@@ -11,50 +11,7 @@ namespace HW.Tool.Data
     /// </summary>
     public static class ProductBuilder
     {
-        private static Dictionary<ProductEnum, Product> hWProducts = GetHWProducts();
-
-        private static List<Product> GetAllHWProducts()
-        {
-            List<Product> hwProducts = new()
-            {
-                CreateCC(),
-                CreateAEC(),
-                CreateMEP(),
-                CreatePMEP(),
-                CreateCST(),
-                CreatePC(),
-                CreateDEC(),
-                CreateST(),
-                CreateXT(),
-                CreateZK(),
-                CreateMaxiBIM()
-            };
-            return hwProducts;
-        }
-
-        /// <summary>
-        /// 默认的红瓦产品
-        /// </summary>
-        public static Dictionary<ProductEnum, Product> HWProducts { get => hWProducts; }
-
-        public static Dictionary<ProductEnum, Product> GetHWProducts()
-        {
-            Dictionary<ProductEnum, Product> products = new()
-            {
-                {ProductEnum.AEC, CreateAEC()},
-                {ProductEnum.CC, CreateCC()},
-                {ProductEnum.CST, CreateCST()},
-                {ProductEnum.DEC, CreateDEC()},
-                {ProductEnum.MaxiBIM, CreateMaxiBIM()},
-                {ProductEnum.MEP, CreateMEP()},
-                {ProductEnum.PC, CreatePC()},
-                {ProductEnum.PMEP, CreatePMEP()},
-                {ProductEnum.ST, CreateST()},
-                {ProductEnum.XT, CreateXT()},
-                {ProductEnum.ZK, CreateZK()},
-            };
-            return products;
-        }
+        public static List<Product> AllProducts { get; set; } = GetInternalProducts();
 
         /// <summary>
         /// 建模大师(建筑) - AEC
@@ -224,6 +181,44 @@ namespace HW.Tool.Data
                 Id = "ZK",
             };
             return product;
+        }
+
+        private static Dictionary<ProductEnum, Product> GetHWProducts()
+        {
+            Dictionary<ProductEnum, Product> products = new()
+            {
+                {ProductEnum.AEC, CreateAEC()},
+                {ProductEnum.CC, CreateCC()},
+                {ProductEnum.CST, CreateCST()},
+                {ProductEnum.DEC, CreateDEC()},
+                {ProductEnum.MaxiBIM, CreateMaxiBIM()},
+                {ProductEnum.MEP, CreateMEP()},
+                {ProductEnum.PC, CreatePC()},
+                {ProductEnum.PMEP, CreatePMEP()},
+                {ProductEnum.ST, CreateST()},
+                {ProductEnum.XT, CreateXT()},
+                {ProductEnum.ZK, CreateZK()},
+            };
+            return products;
+        }
+
+        public static List<Product> GetInternalProducts()
+        {
+            List<Product> products = new()
+            {
+                CreateAEC(),
+                CreateCC(),
+                CreateCST(),
+                CreateDEC(),
+                CreateMaxiBIM(),
+                CreateMEP(),
+                CreatePC(),
+                CreatePMEP(),
+                CreateST(),
+                CreateXT(),
+                CreateZK()
+            };
+            return products;
         }
     }
 }

@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace HW.PullFTPFile
 {
     /// <summary>
-    /// FTP操作
+    /// 获取包的所有流程
     /// </summary>
     public class PullProductsOperater
     {
@@ -21,7 +21,55 @@ namespace HW.PullFTPFile
 
         public PullProductsOperater()
         {
-            FtpProductNames = FtpProducts.GetFtpProductNames();
+            //FtpProductNames = FtpProdutBuilder.GetFtpProductNames();
+        }
+
+        /// <summary>
+        /// 得到ftp上的名字
+        /// </summary>
+        /// <returns></returns>
+        public List<FtpProdut> GetFtpProduts()
+        {
+            if (null == _ftpClient)
+            {
+                throw new InvalidOperationException($"{nameof(_ftpClient)}, 没有有被初始化");
+            }
+
+            _ftpClient.Connect();
+
+            List<FtpProdut> ftpProduts = FtpProdutBuilder.FtpProduts;
+
+            foreach (var ftpProduct in ftpProduts)
+            {
+                List<FtpProductVersion> ftpProductVersions = new();
+
+                var ftpProductPath = ftpProduct.FtpName;
+                var ftpDirPaths = _ftpClient.GetNameListing($"{ftpProductPath}").ToList();
+
+                // 解析路径
+                foreach (var ftpDirPath in ftpDirPaths)
+                {
+                    // 提取正确的版本文件夹, 存在log文件夹
+                    if (ftpDirPath.ToLower().Contains("_log"))
+                    {
+                        continue;
+                    }
+
+                    string version = ftpDirPath.Substring(ftpProductPath.Length, ftpDirPath.Length - ftpProductPath.Length);
+                    if (null == version) continue;
+
+                    ftpProductVersions.Add(new()
+                    {
+                        Version = version,
+                        VersionDirPath = ftpDirPath,
+                    });
+
+                    ftpProduct.FtpVersions = ftpProductVersions;
+                }
+            }
+            _ftpClient.Disconnect();
+
+            return ftpProduts;
         }
 
         /// <summary>
@@ -99,10 +147,6 @@ namespace HW.PullFTPFile
             return ftpProductVersions;
         }
 
-        public void Process()
-        {
-        }
-
         /// <summary>
         /// 获取到版本信息
         /// </summary>
@@ -171,6 +215,18 @@ namespace HW.PullFTPFile
                 return productPath;
             }
             return null;
+        }
+
+        private void CheckInit()
+        {
+            if (null == _ftpClient)
+            {
+                throw new InvalidOperationException($"{nameof(_ftpClient)}, 没有有被初始化");
+            }
+            if (null == _ftpServerConfig)
+            {
+                throw new InvalidOperationException($"{nameof(_ftpServerConfig)}, 没有初始化");
+            }
         }
     }
 }

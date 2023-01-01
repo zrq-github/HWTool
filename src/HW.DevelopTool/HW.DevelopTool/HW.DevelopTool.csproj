@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <Folder Include="Config\" />
+    <Folder Include="DB\" />
   </ItemGroup>
 
 </Project>

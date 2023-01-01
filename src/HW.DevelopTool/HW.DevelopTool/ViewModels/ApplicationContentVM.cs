@@ -32,10 +32,11 @@ namespace HW.DevelopTool.ViewModels
         {
             IsLoading = true;
 
-            if (!IsInit)
-            {
-                IsInit = CustomInit();
-            }
+            CustomInit();
+            //if (!IsInit)
+            //{
+            //    IsInit = CustomInit();
+            //}
 
             IsLoading = false;
             LoadingTips = loadingTips;
