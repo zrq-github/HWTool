@@ -52,14 +52,14 @@
                     VerticalContentAlignment="Center"></Label>
                 <ComboBox
                     Width="200"
-                    IsEditable="True"
-                    Text="{Binding SelectProductName,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"
-                    ItemsSource="{Binding PullProducts,Converter={x:Static converters:HWProductToNameConverter.Instance}}"
+                    ItemsSource="{Binding PullProducts}"
+                    SelectedValue="{Binding SelFtpProdut}"
+                    DisplayMemberPath="Name"
                     adonisExtensions:WatermarkExtension.Watermark="Select an 产品"
                     VerticalContentAlignment="Center"
                     HorizontalContentAlignment="Center">
                 </ComboBox>
-            </StackPanel>
+            </StackPanel>   
 
             <!-- 选择版本 -->
             <StackPanel
@@ -73,9 +73,8 @@
                     VerticalContentAlignment="Center"></Label>
                 <ComboBox
                     Width="200"
-                    IsEditable="True"
-                    Text="{Binding ProductVersion,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"
-                    ItemsSource="{Binding ProductVersions}"
+                    ItemsSource="{Binding SelFtpProdut.FtpVersions}"
+                    DisplayMemberPath="Version"
                     adonisExtensions:WatermarkExtension.Watermark="Select an 版本"
                     VerticalContentAlignment="Center"
                     HorizontalContentAlignment="Center" />

@@ -55,7 +55,7 @@ namespace HW.PullFTPFile
                         continue;
                     }
 
-                    string version = ftpDirPath.Substring(ftpProductPath.Length, ftpDirPath.Length - ftpProductPath.Length);
+                    string version = Path.GetFileName(ftpDirPath);
                     if (null == version) continue;
 
                     ftpProductVersions.Add(new()
@@ -69,7 +69,7 @@ namespace HW.PullFTPFile
             }
             _ftpClient.Disconnect();
 
-            return ftpProduts;
+            return ftpProduts.ToList();
         }
 
         /// <summary>
@@ -145,76 +145,6 @@ namespace HW.PullFTPFile
             _ftpClient.Disconnect();
 
             return ftpProductVersions;
-        }
-
-        /// <summary>
-        /// 获取到版本信息
-        /// </summary>
-        private List<string> GetFolderVersionA(string requedstPath)
-        {
-            List<string> folder = new();
-            try
-            {
-                HttpClient httpClient = new();
-
-                FtpWebRequest reqFTP = (FtpWebRequest)WebRequest.Create(new Uri(requedstPath));
-                reqFTP.Credentials = new NetworkCredential();
-                reqFTP.Method = WebRequestMethods.Ftp.ListDirectoryDetails;
-                WebResponse response = reqFTP.GetResponse();
-                StreamReader reader = new StreamReader(response.GetResponseStream());
-                try
-                {
-                    string line = reader.ReadLine();
-                    while (line != null)
-                    {
-                        if (!line.ToLower().Contains("log") && !line.ToLower().Contains("for"))
-                        {
-                            int vIndex = line.ToLower().IndexOf(" v");
-                            string version = line.Substring(vIndex + 1);
-                            try
-                            {
-                                var number = version.ToLower().Replace("v", "").Replace(".", "");
-                                if (int.TryParse(number, out int versionNum))
-                                {
-                                    folder.Add(version);
-                                }
-                                Console.WriteLine(version);
-                            }
-                            catch (Exception)
-                            {
-                            }
-                        }
-                        line = reader.ReadLine();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    //System.Windows.Forms.MessageBox.Show(ex.Message);
-                }
-                finally
-                {
-                    reader.Close();
-                    response.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                //System.Windows.Forms.MessageBox.Show(ex.Message);
-            }
-            return folder;
-        }
-
-        /// <summary>
-        /// 获取FTP上产品路径
-        /// </summary>
-        private string? GetFtpProductPath(ProductEnum productEnum)
-        {
-            if (FtpProductNames.TryGetValue(productEnum, out string? ftpName))
-            {
-                string productPath = @$"{_ftpServerConfig.Host}{ftpName}/";
-                return productPath;
-            }
-            return null;
         }
 
         private void CheckInit()

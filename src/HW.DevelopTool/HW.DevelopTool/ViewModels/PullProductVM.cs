@@ -24,10 +24,10 @@ namespace HW.DevelopTool.ViewModels
         private bool _isShowProgressBar = false;
         private RelayCommand? _pull;
         private PullProductsOperater _ftpOperater = new();
-        private string? _selectProductName = string.Empty;
         private List<string> _productVersions = new();
         private string _productVersion = string.Empty;
         private List<FtpProdut> _pullProducts = new();
+        private FtpProdut _selFtpProdut;
 
         public PullProductVM()
         {
@@ -41,24 +41,14 @@ namespace HW.DevelopTool.ViewModels
         /// <summary>
         /// 拉包的数据源
         /// </summary>
-        public List<FtpProdut> PullProducts { get => _pullProducts; set => SetProperty(ref _pullProducts, value);}
+        public List<FtpProdut> PullProducts { get => _pullProducts; set => SetProperty(ref _pullProducts, value); }
 
-        /// <summary>
-        /// 选择拉取的产品
-        /// </summary>
-        public string? SelectProductName
-        {
-            get => _selectProductName;
-            set
-            {
-                SetProperty(ref _selectProductName, value);
-                OnSelectProduct(_selectProductName);
-            }
-        }
+        public FtpProdut SelFtpProdut { get => _selFtpProdut; set => SetProperty(ref _selFtpProdut, value);}
+
 
         private void OnSelectProduct(string? selectProductName)
         {
-            if (null == selectProductName) { return; }
+            //if (null == selectProductName) { return; }
 
             //foreach (var pullProduct in _pullProducts)
             //{
@@ -115,7 +105,6 @@ namespace HW.DevelopTool.ViewModels
         private void Clear()
         {
             PullProducts.Clear();
-            ProductVersions.Clear();
         }
 
         #endregion Init

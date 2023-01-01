@@ -25,10 +25,9 @@ namespace HW.DevelopTool.Converters
                 }
                 return strings;
             }
-
-            if (value is Product hwProduct)
+            else if (value is IProduct product)
             {
-                return hwProduct.Name;
+                return product.Name;
             }
             return value;
         }
