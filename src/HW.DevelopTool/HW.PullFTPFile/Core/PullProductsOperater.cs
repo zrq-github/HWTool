@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.WebRequestMethods;
 
 namespace HW.PullFTPFile
 {
@@ -156,6 +157,53 @@ namespace HW.PullFTPFile
             if (null == _ftpServerConfig)
             {
                 throw new InvalidOperationException($"{nameof(_ftpServerConfig)}, 没有初始化");
+            }
+        }
+
+        /// <summary>
+        /// 下载产品, 默认下载最新的列表
+        /// </summary>
+        public void DownProduct(string ftpDirPath, string downDirPath)
+        {
+            if (null == _ftpClient)
+            {
+                throw new InvalidOperationException($"{nameof(_ftpClient)}, 没有有被初始化");
+            }
+
+            bool dirExists = _ftpClient.DirectoryExists(ftpDirPath);
+            if (!dirExists)
+            {
+                throw new InvalidOperationException($"{ftpDirPath}, 路径不存在");
+            }
+
+            try
+            {
+                _ftpClient.Connect();
+
+                List<FtpListItem> ftpListItems = _ftpClient.GetListing(ftpDirPath).ToList();
+                if (ftpListItems.Count == 0) return;
+
+                // 按照创建的时间, 从近到远排序
+                ftpListItems.Sort((a, b) =>
+                {
+                    return -a.Modified.CompareTo(b.Modified);
+                });
+
+                FtpListItem ftpListItem = ftpListItems[0];
+                string downFileName = Path.Combine(downDirPath, ftpListItem.Name);
+
+                _ftpClient.DownloadFile(@$"{downFileName}", $"{ftpListItem.FullName}", FtpLocalExists.Overwrite, FtpVerify.Retry, (FtpProgress ftpProgress) =>
+                {
+
+                });
+            }
+            catch(Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            finally
+            {
+                _ftpClient.Disconnect();
             }
         }
     }

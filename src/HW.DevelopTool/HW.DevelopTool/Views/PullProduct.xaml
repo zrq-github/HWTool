@@ -74,6 +74,7 @@
                 <ComboBox
                     Width="200"
                     ItemsSource="{Binding SelFtpProdut.FtpVersions}"
+                    SelectedValue="{Binding SelFtpVersion}"
                     DisplayMemberPath="Version"
                     adonisExtensions:WatermarkExtension.Watermark="Select an 版本"
                     VerticalContentAlignment="Center"

@@ -28,6 +28,7 @@ namespace HW.DevelopTool.ViewModels
         private string _productVersion = string.Empty;
         private List<FtpProdut> _pullProducts = new();
         private FtpProdut _selFtpProdut;
+        private FtpProductVersion _selFtpVersion;
 
         public PullProductVM()
         {
@@ -43,8 +44,15 @@ namespace HW.DevelopTool.ViewModels
         /// </summary>
         public List<FtpProdut> PullProducts { get => _pullProducts; set => SetProperty(ref _pullProducts, value); }
 
-        public FtpProdut SelFtpProdut { get => _selFtpProdut; set => SetProperty(ref _selFtpProdut, value);}
+        /// <summary>
+        /// 选着的产品
+        /// </summary>
+        public FtpProdut SelFtpProdut { get => _selFtpProdut; set => SetProperty(ref _selFtpProdut, value); }
 
+        /// <summary>
+        /// 选择的当前版本
+        /// </summary>
+        public FtpProductVersion SelFtpVersion { get => _selFtpVersion; set => SetProperty(ref _selFtpVersion, value); }
 
         private void OnSelectProduct(string? selectProductName)
         {
@@ -122,7 +130,17 @@ namespace HW.DevelopTool.ViewModels
         private void PerformPull()
         {
             IsShowProgressBar = true;
-            MessageBox.Show(Application.Current.MainWindow, "拉包完成");
+
+            // 验证选择的路径
+            if (null == SelFtpVersion)
+            {
+                return;
+            }
+            var ftpDirPath = SelFtpVersion.VersionDirPath;
+
+
+            _ftpOperater.DownProduct(ftpDirPath, @"C:\Users\zrq\Downloads");
+
             IsShowProgressBar = false;
         }
 
