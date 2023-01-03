@@ -24,5 +24,6 @@ namespace HW.DevelopTool.Views
         {
             InitializeComponent();
         }
+
     }
 }

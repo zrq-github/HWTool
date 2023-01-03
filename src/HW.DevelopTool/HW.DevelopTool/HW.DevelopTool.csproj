@@ -2,10 +2,12 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net6.0-windows8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <XamlDebuggingInformation>True</XamlDebuggingInformation>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <StartupObject>HW.DevelopTool.App</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\dotnet\ZRQ.Utility\ZRQ.Utils.csproj" />
     <ProjectReference Include="..\..\..\..\ZRQ.UI\ZRQ.UI\ZRQ.UI.csproj" />
     <ProjectReference Include="..\HW.PullFTPFile\HW.PullFTPFile.csproj" />
   </ItemGroup>

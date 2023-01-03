@@ -11,6 +11,7 @@
     xmlns:converters="clr-namespace:HW.DevelopTool.Converters"
     xmlns:viewModels="clr-namespace:HW.DevelopTool.ViewModels"
     xmlns:uiConverters="clr-namespace:ZRQ.UI.UIConverter;assembly=ZRQ.UI"
+    xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
     mc:Ignorable="d"
     d:DesignHeight="450"
     d:DesignWidth="800"
@@ -62,7 +63,17 @@
                     DisplayMemberPath="Name"
                     adonisExtensions:WatermarkExtension.Watermark="Select an 产品"
                     VerticalContentAlignment="Center"
+                    
                     HorizontalContentAlignment="Center">
+
+                    <behaviors:Interaction.Triggers>
+                        <behaviors:EventTrigger
+                            EventName="SelectionChanged">
+                            <behaviors:CallMethodAction
+                                TargetObject="{Binding ElementName=win,Path=DataContext}"
+                                MethodName="SelectProductChanged"></behaviors:CallMethodAction>
+                        </behaviors:EventTrigger>
+                    </behaviors:Interaction.Triggers>
                 </ComboBox>
             </StackPanel>   
 
@@ -98,7 +109,8 @@
                     VerticalContentAlignment="Center"></Label>
                 <TextBox
                     Width="200"
-                    adonisExtensions:WatermarkExtension.Watermark="填写解压路径"
+                    Text="{Binding DownFilePath}"
+                    adonisExtensions:WatermarkExtension.Watermark="解压路径......"
                     Style="{StaticResource TextBoxDefaultStyle}" />
                 <Button
                     Margin="10,0,0,0"

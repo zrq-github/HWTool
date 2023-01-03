@@ -45,7 +45,18 @@ namespace HW.PullFTPFile
                 List<FtpProductVersion> ftpProductVersions = new();
 
                 var ftpProductPath = ftpProduct.FtpName;
-                var ftpDirPaths = _ftpClient.GetNameListing($"{ftpProductPath}").ToList();
+
+                // 按照创建的文件夹路径进行排序
+                List<string> ftpDirPaths = new();
+                var ftpListItems = _ftpClient.GetListing($"{ftpProductPath}").ToList();
+                ftpListItems.Sort((a, b) =>
+                {
+                    return -a.Modified.CompareTo(b.Modified);
+                });
+                foreach (var ftpItem in ftpListItems)
+                {
+                    ftpDirPaths.Add(ftpItem.FullName);
+                }
 
                 // 解析路径
                 foreach (var ftpDirPath in ftpDirPaths)
@@ -101,7 +112,7 @@ namespace HW.PullFTPFile
         /// <summary>
         /// 获取到产品的 版本 - 版本路径
         /// </summary>
-        public List<FtpProductVersion> GetVersionPaths(ProductEnum productEnum)
+        private List<FtpProductVersion> GetVersionPaths(ProductEnum productEnum)
         {
             if (null == _ftpClient)
             {
@@ -142,7 +153,6 @@ namespace HW.PullFTPFile
                 });
             }
 
-
             _ftpClient.Disconnect();
 
             return ftpProductVersions;
@@ -163,7 +173,7 @@ namespace HW.PullFTPFile
         /// <summary>
         /// 下载产品, 默认下载最新的列表
         /// </summary>
-        public void DownProduct(string ftpDirPath, string downDirPath, Action<FtpProgress> progress = null)
+        public void DownProduct(string ftpDirPath, string downDirPath, Action<FtpProgress>? progress = null)
         {
             if (null == _ftpClient)
             {

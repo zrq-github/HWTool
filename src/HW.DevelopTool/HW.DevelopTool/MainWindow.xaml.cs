@@ -1,4 +1,5 @@
 ﻿using AdonisUI;
+using HW.DevelopTool.Config;
 using System.Windows;
 
 namespace HW.DevelopTool;
@@ -14,6 +15,19 @@ public partial class MainWindow : AdonisUI.Controls.AdonisWindow
     public MainWindow()
     {
         InitializeComponent();
+
+        this.Loaded += MainWindow_Loaded;
+        this.Closed += MainWindow_Closed;
+    }
+
+    private void MainWindow_Closed(object? sender, System.EventArgs e)
+    {
+        MySettings.Ins.SaveFile();
+    }
+
+    private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+    {
+        MySettings.Ins.InitSetting();
     }
 
     public bool IsDark
