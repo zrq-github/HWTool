@@ -7,6 +7,7 @@ using HW.Tool.Data;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -27,12 +28,17 @@ namespace HW.DevelopTool.ViewModels
         private List<string> _productVersions = new();
         private string _productVersion = string.Empty;
         private List<FtpProdut> _pullProducts = new();
-        private FtpProdut _selFtpProdut;
-        private FtpProductVersion _selFtpVersion;
+        private FtpProdut? _selFtpProdut;
+        private FtpProductVersion? _selFtpVersion;
+        private double _progressValue;
 
         public PullProductVM()
         {
         }
+
+        public double ProgressValue { get => _progressValue; set => SetProperty(ref _progressValue, value); }
+
+        public IProgress Progress { get; set; } = new ProgressModel();
 
         /// <summary>
         /// 是否显示进度条
@@ -47,12 +53,12 @@ namespace HW.DevelopTool.ViewModels
         /// <summary>
         /// 选着的产品
         /// </summary>
-        public FtpProdut SelFtpProdut { get => _selFtpProdut; set => SetProperty(ref _selFtpProdut, value); }
+        public FtpProdut? SelFtpProdut { get => _selFtpProdut; set => SetProperty(ref _selFtpProdut, value); }
 
         /// <summary>
         /// 选择的当前版本
         /// </summary>
-        public FtpProductVersion SelFtpVersion { get => _selFtpVersion; set => SetProperty(ref _selFtpVersion, value); }
+        public FtpProductVersion? SelFtpVersion { get => _selFtpVersion; set => SetProperty(ref _selFtpVersion, value); }
 
         private void OnSelectProduct(string? selectProductName)
         {
@@ -124,26 +130,42 @@ namespace HW.DevelopTool.ViewModels
         /// </summary>
         public ICommand Pull => _pull ??= new RelayCommand(PerformPull);
 
+        private bool _isPerforming { get; set; }
+
         /// <summary>
         /// 执行拉包流程
         /// </summary>
         private void PerformPull()
         {
-            IsShowProgressBar = true;
+            if (_isPerforming) return;
 
             // 验证选择的路径
-            if (null == SelFtpVersion)
+            //if (null == SelFtpVersion)
+            //{
+            //    return;
+            //}
+            var ftpDirPath = SelFtpVersion?.VersionDirPath;
+            if (string.IsNullOrEmpty(ftpDirPath)) return;
+
+            Task.Run(() =>
             {
-                return;
-            }
-            var ftpDirPath = SelFtpVersion.VersionDirPath;
+                IsShowProgressBar = true;
+                _ftpOperater.DownProduct(ftpDirPath, @"C:\Users\zrq\Downloads", (FtpProgress ftpProgress) =>
+                {
+                    Progress.Value = ftpProgress.Progress;
+                    Progress.Msg = $"TransferSpeed: {ftpProgress.TransferSpeedToString()}";
 
-
-            _ftpOperater.DownProduct(ftpDirPath, @"C:\Users\zrq\Downloads");
-
-            IsShowProgressBar = false;
+                    //Debug.WriteLine(
+                    //    $"FileCount: {ftpProgress.FileCount} \n" +
+                    //    $"Progress: {ftpProgress.Progress} \n" +
+                    //    $"TransferSpeedToString: {ftpProgress.TransferSpeedToString()}");
+                });
+            }).ContinueWith(t =>
+            {
+                IsShowProgressBar = false;
+                _isPerforming = false;
+            });
         }
-
         #endregion
     }
 }

@@ -14,6 +14,7 @@ namespace HW.PullFTPFile.DB
         /// 版本的名字
         /// </summary>
         public string Version { get; set; } = string.Empty;
+
         /// <summary>
         /// 版本路径
         /// </summary>

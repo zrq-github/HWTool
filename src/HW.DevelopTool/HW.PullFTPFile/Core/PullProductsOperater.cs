@@ -163,7 +163,7 @@ namespace HW.PullFTPFile
         /// <summary>
         /// 下载产品, 默认下载最新的列表
         /// </summary>
-        public void DownProduct(string ftpDirPath, string downDirPath)
+        public void DownProduct(string ftpDirPath, string downDirPath, Action<FtpProgress> progress = null)
         {
             if (null == _ftpClient)
             {
@@ -192,12 +192,17 @@ namespace HW.PullFTPFile
                 FtpListItem ftpListItem = ftpListItems[0];
                 string downFileName = Path.Combine(downDirPath, ftpListItem.Name);
 
-                _ftpClient.DownloadFile(@$"{downFileName}", $"{ftpListItem.FullName}", FtpLocalExists.Overwrite, FtpVerify.Retry, (FtpProgress ftpProgress) =>
-                {
+                _ftpClient.DownloadFile(@$"{downFileName}", $"{ftpListItem.FullName}", FtpLocalExists.Overwrite, FtpVerify.Retry, progress);
 
-                });
+                //(FtpProgress ftpProgress) =>
+                //{
+                //    Debug.WriteLine(
+                //        $"FileCount: {ftpProgress.FileCount} \n" +
+                //        $"Progress: {ftpProgress.Progress} \n" +
+                //        $"TransferSpeedToString: {ftpProgress.TransferSpeedToString()}");
+                //}
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Debug.WriteLine(ex);
             }
